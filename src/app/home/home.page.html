@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Convertidor de monedas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>Cantidad</ion-label>
+    <ion-input [(ngModel)]="amount" type="number"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>De</ion-label>
+    <ion-select [(ngModel)]="baseCurrency">
+      <ion-select-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>A</ion-label>
+    <ion-select [(ngModel)]="targetCurrency">
+      <ion-select-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="convertCurrency()">Convert</ion-button>
+
+  <div *ngIf="conversionResult">
+    <h2>Conversion Resultado: {{ amount }} {{ baseCurrency }} = {{ conversionResult | number: '1.2-2' }} {{ targetCurrency }}</h2>
+  </div>
+</ion-content>
